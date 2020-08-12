@@ -2,48 +2,56 @@ namespace FeX.Game
 
 open System
 open Microsoft.Xna.Framework
+open Microsoft.Xna.Framework.Content
 open Microsoft.Xna.Framework.Graphics
 open Microsoft.Xna.Framework.Input
 open FeX.Core
-open FeX.Core.Types
-
+open Types
 
 type Player =
-    { spriteBatch: Option<SpriteBatch>
-      texture: Option<Texture2D>
-      speed: Option<float32>
-      position: Option<Vector2>
-      life: Option<int> }
+    { texture: Texture2D
+      speed: float32
+      position: Vector2
+      bounds: Rectangle
+      playerIndex: PlayerIndex }
 
-[<RequireQualifiedAccess>]
-module Player =
+    static member Update (position: Vector2) (bounds: Option<Rectangle>) (player: Player) =
+        { player 
+            with 
+                position = position;
+                bounds = 
+                    match bounds with 
+                    | Some bounds -> bounds 
+                    | None -> player.bounds }
 
-    let init (origin: Vector2) (speed: float32) (player: Player) =
-        { player with
-              position = Some origin
-              speed = Some speed }
+    interface GameObject with
+        member this.Load (content: ContentManager) =
+            this :> GameObject
 
-    let loadContent (batch: SpriteBatch) (texture: Texture2D) (player: Player) =
-        { player with
-              spriteBatch = Some batch
-              texture = Some texture }
+        member this.Update(gameTime: GameTime): GameObject =
+            let padstate = GamePad.GetState(this.playerIndex)
+            let kstate = Keyboard.GetState()
 
-    let update (position: Vector2) (player: Player) = { player with position = Some position }
+            let elapsed =
+                gameTime.ElapsedGameTime.TotalSeconds |> float32
 
-    let draw (rotation: float32) (preferredOrigin: Vector2) (player: Player) =
-        match player.spriteBatch with
-        | Some batch ->
-            batch.Begin()
-            batch.Draw
-                (player.texture |> Option.defaultValue null,
-                 player.position
-                 |> Option.defaultValue preferredOrigin,
-                 Nullable(),
-                 Color.White,
-                 rotation,
-                 preferredOrigin,
-                 1.f,
-                 SpriteEffects.None,
-                 0.f)
-            batch.End()
-        | None -> ()
+            let finalPosition = 
+                if padstate.IsConnected then
+                    /// TODO: change Vector2(1.f, -1.f) for X/Y Inverted control settings
+                    let direction = padstate.ThumbSticks.Left * Vector2(1.f, -1.f)
+                    /// TODO: change 0.05f for a better suited value (controller sensitivity)
+                    this.position + direction * ((this.speed * 0.05f) + elapsed)
+                else
+                    Position.moveWithArrows kstate this.speed elapsed this.position
+
+            let bounds = 
+                Rectangle(finalPosition.ToPoint(), this.texture.Bounds.Size)
+
+            Player.Update finalPosition (Some bounds) this
+            :> GameObject
+
+        member this.Draw(gameTime: GameTime) (batch: SpriteBatch): unit =
+            batch.Draw(this.texture, this.position, Color.White)
+
+        member this.Dispose(): unit = 
+            this.texture.Dispose()
