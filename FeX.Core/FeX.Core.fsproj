@@ -5,7 +5,6 @@
   <ItemGroup>
     <Compile Include="Types.fs" />
     <Compile Include="Characters.fs" />
-    <Compile Include="Library.fs" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Update="FSharp.Core" Version="4.7.2" />
