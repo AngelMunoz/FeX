@@ -6,10 +6,7 @@ open Microsoft.Xna.Framework.Input
 [<RequireQualifiedAccess>]
 module Position =
 
-    let moveWithArrows (kstate: KeyboardState) (speed: float32) (elapsed: float32) (position: Option<Vector2>) =
-        let position =
-            position |> Option.defaultValue Vector2.Zero
-
+    let moveWithArrows (kstate: KeyboardState) (speed: float32) (elapsed: float32) (position: Vector2) =
         match kstate.GetPressedKeys() with
         | keys when keys
                     |> Array.contains (Keys.Up)

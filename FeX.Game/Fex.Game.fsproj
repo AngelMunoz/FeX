@@ -10,9 +10,10 @@
     <ApplicationIcon>Icon.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Types.fs" />
+    <Compile Include="Position.fs" />
     <Compile Include=".\Game\Player.fs" />
     <Compile Include=".\Game\Scene.fs" />
-    <Compile Include="Position.fs" />
     <Compile Include="Game.fs" />
     <Compile Include="Program.fs" />
   </ItemGroup>
