@@ -81,3 +81,20 @@ module Types =
     type CharacterUpdateError =
         { Message: UpdateErrorMsg
           Property: CharacterProperty }
+
+    [<RequireQualifiedAccess>]
+    type SceneType = 
+        | LoadingScreen
+        | Plaza
+        | WildArea
+        | WaitingRoom
+        | BossRoom
+        | SelectionRoom
+
+    [<RequireQualifiedAccess>]
+    type GameObjectKind = 
+        | NPC
+        | Enemy
+        | Player
+        | DestructibleObject
+        | IndestructibleObject
