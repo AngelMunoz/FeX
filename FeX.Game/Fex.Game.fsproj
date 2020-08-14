@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
@@ -12,8 +13,10 @@
   <ItemGroup>
     <Compile Include="Types.fs" />
     <Compile Include="Position.fs" />
+    <Compile Include="Game\Decoration.fs" />
     <Compile Include=".\Game\Player.fs" />
-    <Compile Include=".\Game\Scene.fs" />
+    <Compile Include="Game\Plaza.fs" />
+    <Compile Include=".\Game\LoadingScene.fs" />
     <Compile Include="Game.fs" />
     <Compile Include="Program.fs" />
   </ItemGroup>
@@ -32,13 +35,7 @@
     <TrimmerRootAssembly Include="Microsoft.Xna.Framework.Content.ContentTypeReader" Visible="false" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="MonoGame.Framework.DesktopGL" Version="3.8.0.1641" />
-    <PackageReference Include="MonoGame.Content.Builder.Task" Version="3.8.0.1641" />
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\FeX.Core\FeX.Core.fsproj" />
   </ItemGroup>
-  <ItemGroup>
-    <PackageReference Update="FSharp.Core" Version="4.7.2" />
-  </ItemGroup>
+  <Import Project="..\.paket\Paket.Restore.targets" />
 </Project>
