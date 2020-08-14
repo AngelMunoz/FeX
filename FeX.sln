@@ -1,18 +1,20 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.26124.0
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30406.217
 MinimumVisualStudioVersion = 15.0.26124.0
-Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "FeX.Core", "Fex.Core\FeX.Core.fsproj", "{DE33B5DF-5BA0-4A2D-AA87-8FD77C58DFDA}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".paket", ".paket", "{A8446F63-889E-443E-8972-59E7C5D799FC}"
+	ProjectSection(SolutionItems) = preProject
+		paket.dependencies = paket.dependencies
+	EndProjectSection
 EndProject
-Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "FeX.Core.Tests", "FeX.Core.Tests\FeX.Core.Tests.fsproj", "{5BEB4DC3-23DF-4113-90F9-18197C6E2C77}"
+Project("{6EC3EE1D-3C4E-46DD-8F32-0CC8E7565705}") = "FeX.Core", "Fex.Core\FeX.Core.fsproj", "{DE33B5DF-5BA0-4A2D-AA87-8FD77C58DFDA}"
 EndProject
-Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "Fex.Game", "FeX.Game\Fex.Game.fsproj", "{6411659B-5655-4A81-8117-F80B22AC7372}"
+Project("{6EC3EE1D-3C4E-46DD-8F32-0CC8E7565705}") = "FeX.Core.Tests", "FeX.Core.Tests\FeX.Core.Tests.fsproj", "{5BEB4DC3-23DF-4113-90F9-18197C6E2C77}"
+EndProject
+Project("{6EC3EE1D-3C4E-46DD-8F32-0CC8E7565705}") = "Fex.Game", "FeX.Game\Fex.Game.fsproj", "{6411659B-5655-4A81-8117-F80B22AC7372}"
 EndProject
 Global
-	GlobalSection(SolutionProperties) = preSolution
-		HideSolutionNode = FALSE
-	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Debug|x64 = Debug|x64
@@ -58,5 +60,11 @@ Global
 		{6411659B-5655-4A81-8117-F80B22AC7372}.Release|x64.Build.0 = Release|Any CPU
 		{6411659B-5655-4A81-8117-F80B22AC7372}.Release|x86.ActiveCfg = Release|Any CPU
 		{6411659B-5655-4A81-8117-F80B22AC7372}.Release|x86.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {F48D0953-5F94-4DC6-935A-D205690CBADA}
 	EndGlobalSection
 EndGlobal
