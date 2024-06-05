@@ -1,6 +1,0 @@
-
-group Game
-    FSharp.Core
-    MonoGame.Extended
-    MonoGame.Framework.DesktopGL
-    MonoGame.Content.Builder.Task
